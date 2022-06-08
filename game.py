@@ -3,8 +3,16 @@ from player import Player
 from board import Board
 
 
-# Todo: Continue here.
-# Each game needs to be its own object. and store results etc in the scoreboard at the end. before killing the game.
+def return_win(count):
+    if count >= 4:
+        # print("winner")
+        return True
+
+    else:
+        # print("no winner")
+        return False
+
+
 class Game:
     def __init__(self, game_id: int, settings: GameSettings):
         self.game_id = game_id
@@ -34,18 +42,12 @@ class Game:
                 player_input = int(input(f"Next turn: {player.player_character} Select column: "))
                 updated_cell = self.board.update_board(player_input, player.player_character)
 
-                # DEBUG WIN CONDITION
-
                 self.board.draw()
-
-                # Check win conditions - Also - what happens if board is filled up?
-                # Could calculate turns from settings.get_grid_size ?? And have a fixed number of turns??
-                # Todo: Check win conditions here
 
                 # win = True  # comment/uncomment to trigger WIN for debug
                 win = self.check_win_conditions(updated_cell)
                 if win:
-                    print(updated_cell)
+                    # print(updated_cell)
                     self.winner = player.player_character
 
         return self.winner
@@ -62,32 +64,49 @@ class Game:
         row = updated_cell['row']
         column = updated_cell['column']
 
+        board = self.board.rows
+
+        has_four = self.count_sequential(board, player, row, column, 0, 1)
+        if return_win(has_four):
+            return True
+        has_four = self.count_sequential(board, player, row, column, -1, 1)
+        if return_win(has_four):
+            return True
+        has_four = self.count_sequential(board, player, row, column, -1, 0)
+        if return_win(has_four):
+            return True
+        has_four = self.count_sequential(board, player, row, column, -1, -1)
+        if return_win(has_four):
+            return True
+        has_four = self.count_sequential(board, player, row, column, 0, -1)
+        if return_win(has_four):
+            return True
+        has_four = self.count_sequential(board, player, row, column, 1, -1)
+        if return_win(has_four):
+            return True
+        has_four = self.count_sequential(board, player, row, column, 1, 0)
+        if return_win(has_four):
+            return True
+        has_four = self.count_sequential(board, player, row, column, 1, 1)
+        if return_win(has_four):
+            return True
+
+    def count_sequential(self, board, player, start_y, start_x, direction_y, direction_x):
+        count = 0
+        n = 0
+
         legal_rows = self.board.legal_rows
         legal_columns = self.board.legal_columns
 
-        # print(legal_rows, legal_columns)
+        while True:
+            y = start_y + direction_y * n
+            x = start_x + direction_x * n
 
-        count_line = 0
+            if y not in legal_rows or x not in legal_columns:
+                return count
 
-        board = self.board.rows
+            if board[y][x] != player:
+                return count
 
-
-        if row in legal_rows and column in legal_columns:
-            # print(row, column)
-            if board[row][column] == player:
-                print(board[row][column])
-                cont = True
-            else:
-                cont = False
-
-
-
-
-
-    # def end_game(self):
-    #     return self.game_id, self.winner
-
-
-# settings = GameSettings()
-# game = Game(1, settings)
-# game.run_game()
+            count += 1
+            n += 1

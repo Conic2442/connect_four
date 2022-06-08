@@ -15,6 +15,7 @@ class Board:
         self.top_numbers = list(range(1, self.num_columns+1))
         self.top_border = [self.border for i in range(self.num_columns)]
 
+        # Legal rows for use in win condition
         self.legal_rows = list(range(1, self.num_rows + 1))
         self.legal_columns = list(range(0, self.num_columns))
 
@@ -74,6 +75,7 @@ class Board:
         return updated_cell
 
     def draw(self):
+        # print(self.rows)
         print("")
         for row in self.rows:
             row = "  ".join(row)
