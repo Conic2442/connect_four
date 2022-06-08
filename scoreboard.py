@@ -24,7 +24,7 @@ class ScoreBoard:
         # Players
         res = {i: winners.count(i) for i in winners}
         for player_name, wins in res.items():
-            print_str += f'Player {player_name} has a total of {wins} victories!'
+            print_str += f'Player {player_name} has a total of {wins} victories!\n'
 
         return print_str
 

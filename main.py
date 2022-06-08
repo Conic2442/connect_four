@@ -8,8 +8,6 @@ def welcome():
           "Best of luck.")
 
 
-# Correct to place here? or have a "bigbrother class to handle it all"
-
 if __name__ == "__main__":
     welcome()
     sr = showrunner.Showrunner()

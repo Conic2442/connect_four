@@ -24,27 +24,12 @@ class Board:
     def init_board(self):
         to_str = list(map(str, self.top_numbers))
         self.rows.append(to_str)
-        # self.rows.append(self.top_border)
+
         for row in range(self.num_rows):
             new_row = []
             for column in range(self.num_columns):
                 new_row.append(self.bg)
             self.rows.append(new_row)
-
-        #debug_board '' comment this out
-        # self.update_board(2, "H")
-        # self.update_board(3, "H")
-        # self.update_board(4, "H")
-        # self.update_board(5, "Y")
-        # self.update_board(5, "H")
-        # self.update_board(6, "H")
-        # self.update_board(6, "Y")
-        # self.update_board(6, "H")
-        # self.update_board(7, "Y")
-        # self.update_board(7, "Y")
-        # self.update_board(7, "Y")
-
-
 
     def update_board(self, column: int, player: str):
         # Todo: This check should happen at the input in game.

@@ -3,7 +3,7 @@ class GameSettings:
         if players is None:
             self._players = ["Y", "H"]
 
-        self.game_version = 0.3
+        self.game_version = 1.0
 
         # Board size
         self.rows = 6
@@ -20,7 +20,3 @@ class GameSettings:
     @players.setter
     def players(self, players_in: list):
         self._players = players_in
-
-
-#gs = GameSettings()
-# print(gs.players)

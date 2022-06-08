@@ -86,6 +86,3 @@ class Showrunner:
             pass
         if columns:
             self.settings.columns = columns
-
-# sr = Showrunner()
-# sr.run()

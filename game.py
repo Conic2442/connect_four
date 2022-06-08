@@ -5,11 +5,8 @@ from board import Board
 
 def return_win(count):
     if count >= 4:
-        # print("winner")
         return True
-
     else:
-        # print("no winner")
         return False
 
 
@@ -21,7 +18,7 @@ class Game:
 
         # Players
         self.players = []
-        # print(self.settings.players)
+
         for player in self.settings.players:
             new_player = Player(player)
             self.players.append(new_player)
@@ -40,6 +37,8 @@ class Game:
                     break
 
                 player_input = int(input(f"Next turn: {player.player_character} Select column: "))
+                # Check if player input is legal here?
+
                 updated_cell = self.board.update_board(player_input, player.player_character)
 
                 self.board.draw()
@@ -60,7 +59,6 @@ class Game:
         """
 
         player = updated_cell['player']
-        # print(f"Player: {player}")
         row = updated_cell['row']
         column = updated_cell['column']
 
@@ -92,6 +90,17 @@ class Game:
             return True
 
     def count_sequential(self, board, player, start_y, start_x, direction_y, direction_x):
+        """
+        Count_sequential - Per Thomas, master of code | with a tiny tweak
+        :param board: list
+        :param player: string
+        :param start_y: int
+        :param start_x: int
+        :param direction_y: int
+        :param direction_x: int
+        :return: int
+        """
+
         count = 0
         n = 0
 
